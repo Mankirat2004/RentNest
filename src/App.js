@@ -1,9 +1,9 @@
-import VendorLogin from "./vendor/VendorRegistration";
+import VendorDashboard from "./vendor/VendorDashboard";
 
 function App() {
   return (
     <div>
-      <VendorLogin />
+      <VendorDashboard />
     </div>
   );
 }
