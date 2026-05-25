@@ -1,4 +1,4 @@
-import VendorLogin from "./vendor/VendorLogin";
+import VendorLogin from "./vendor/VendorRegistration";
 
 function App() {
   return (
