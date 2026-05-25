@@ -1,88 +1,115 @@
-.vendor-login-page {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.login-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #1e3a5f, #4da8da);
+  font-family: Arial, sans-serif;
+  background-color: #1e3a5f;
+}
+
+.top-header {
+  height: 145px;
+  background-color: #4da8da;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-family: Arial, sans-serif;
+  border-bottom: 3px solid #8b3cff;
 }
 
-.vendor-login-card {
+.logo-placeholder {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: rgba(30, 58, 95, 0.35);
+  margin-bottom: 4px;
+}
+
+.top-header h1 {
+  font-size: 26px;
+  font-weight: 800;
+  color: black;
+}
+
+.login-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;
+}
+
+.role-buttons {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 52px;
+}
+
+.role-buttons button {
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 17px;
+  font-weight: 800;
+  color: black;
+  cursor: pointer;
+}
+
+.buyer-btn {
+  background-color: #4da8da;
+}
+
+.seller-btn {
+  background-color: #ff8c42;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-form input {
   width: 380px;
-  background-color: white;
-  padding: 35px;
-  border-radius: 16px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-  text-align: center;
-}
-
-.vendor-logo {
-  color: #1e3a5f;
-  font-size: 34px;
-  margin-bottom: 10px;
-}
-
-.vendor-login-card h2 {
-  color: #1e3a5f;
-  margin-bottom: 8px;
-}
-
-.login-subtitle {
-  color: #555;
-  font-size: 14px;
-  margin-bottom: 25px;
-}
-
-.form-group {
-  text-align: left;
-  margin-bottom: 18px;
-}
-
-.form-group label {
-  display: block;
-  color: #1e3a5f;
-  font-weight: bold;
-  margin-bottom: 6px;
-}
-
-.form-group input {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  height: 43px;
+  border: none;
+  border-radius: 22px;
+  margin-bottom: 16px;
+  padding: 0 22px;
+  font-size: 22px;
+  font-weight: 800;
+  color: #333;
   outline: none;
-  font-size: 15px;
 }
 
-.form-group input:focus {
-  border-color: #4da8da;
+.login-form input::placeholder {
+  color: #555;
+  opacity: 1;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 34px;
+  margin-top: 43px;
+}
+
+.action-buttons button {
+  width: 155px;
+  height: 44px;
+  border: none;
+  border-radius: 22px;
+  font-size: 21px;
+  font-weight: 800;
+  color: black;
+  cursor: pointer;
 }
 
 .login-btn {
-  width: 100%;
-  padding: 13px;
   background-color: #ff8c42;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 17px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 10px;
 }
 
-.login-btn:hover {
-  background-color: #e6782f;
-}
-
-.register-text {
-  margin-top: 20px;
-  font-size: 14px;
-  color: #555;
-}
-
-.register-text span {
-  color: #4da8da;
-  font-weight: bold;
-  cursor: pointer;
+.register-btn {
+  background-color: #4da8da;
 }

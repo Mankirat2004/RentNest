@@ -2,59 +2,53 @@ import React, { useState } from "react";
 import "./VendorLogin.css";
 
 function VendorLogin() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   function handleLogin(e) {
     e.preventDefault();
-
-    console.log("Email:", email);
-    console.log("Password:", password);
-
-    alert("Vendor login submitted");
+    console.log(username, password);
   }
 
   return (
-    <div className="vendor-login-page">
-      <div className="vendor-login-card">
-        <h1 className="vendor-logo">RentNest</h1>
-        <h2>Vendor Login</h2>
-        <p className="login-subtitle">
-          Login to manage your rental products and bookings
-        </p>
+    <div className="login-page">
+      <header className="top-header">
+        <div className="logo-placeholder"></div>
+        <h1>RentNest</h1>
+      </header>
 
-        <form onSubmit={handleLogin}>
-          <div className="form-group">
-            <label>Email Address</label>
-            <input
-              type="email"
-              placeholder="Enter vendor email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+      <main className="login-body">
+        <div className="role-buttons">
+          <button className="buyer-btn">I’m a Buyer</button>
+          <button className="seller-btn">I’m a Seller</button>
+        </div>
+
+        <form className="login-form" onSubmit={handleLogin}>
+          <input
+            type="text"
+            placeholder="Username:"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+
+          <input
+            type="password"
+            placeholder="Password:"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          <div className="action-buttons">
+            <button type="submit" className="login-btn">
+              Login
+            </button>
+
+            <button type="button" className="register-btn">
+              Register
+            </button>
           </div>
-
-          <div className="form-group">
-            <label>Password</label>
-            <input
-              type="password"
-              placeholder="Enter password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-
-          <button type="submit" className="login-btn">
-            Login
-          </button>
         </form>
-
-        <p className="register-text">
-          New vendor? <span>Create an account</span>
-        </p>
-      </div>
+      </main>
     </div>
   );
 }
