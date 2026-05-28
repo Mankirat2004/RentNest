@@ -1,38 +1,321 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+/* HEADER */
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header {
+  background: #2f3e46;
+  height: 120px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 0 40px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.logo {
+  font-size: 42px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* NAVIGATION */
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* DROPDOWN */
+
+.dropdown {
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 270px;
+  background: white;
+  color: #222;
+  padding: 30px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+.dropdown-menu p {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown:hover > a {
+  color: #84a98c;
+}
+
+/* HEADER RIGHT */
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.login-btn {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.signup-btn {
+  background: #84a98c;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 25px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.phone {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+/* FEATURES */
+
+.features {
+  background: #354f52;
+  color: white;
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  padding: 45px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* HERO */
+
+.hero {
+  background: #f5f5f5;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  padding: 90px 120px;
+}
+
+.hero h1 {
+  font-size: 60px;
+  line-height: 1.2;
+  font-family: Georgia, serif;
+}
+
+.hero-text p {
+  font-size: 22px;
+  line-height: 1.7;
+  margin-bottom: 25px;
+}
+
+button {
+  background: #84a98c;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 15px 40px;
+  font-weight: bold;
+  margin-top: 25px;
+  cursor: pointer;
+}
+
+/* PRODUCT / LISTING PAGE */
+
+.shop-banner {
+  height: 330px;
+  background: linear-gradient(rgba(0,0,0,0.25), rgba(0,0,0,0.25)),
+    url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80");
+  background-size: cover;
+  background-position: center;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shop-banner h1 {
+  font-size: 55px;
+  font-family: Georgia, serif;
+}
+
+.fitness-intro {
+  padding: 50px 18%;
+  background: white;
+}
+
+.fitness-intro h1 {
+  font-size: 38px;
+  margin: 25px 0;
+}
+
+.fitness-products {
+  background: #edf7f7;
+  padding: 90px 0;
+}
+
+.product-grid {
+  width: 760px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px 50px;
+}
+
+.product-image-box {
+  background: white;
+  border-radius: 15px;
+  height: 230px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 20px;
+  gap: 20px;
+}
+
+.product-image-box img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.product h2 {
+  font-size: 28px;
+  margin: 20px 0 10px;
+}
+
+.product h3 {
+  font-size: 28px;
+}
+
+.product h3 span {
+  font-size: 14px;
+  color: #52796f;
+}
+
+.cart-btn {
+  background: #52796f;
+}
+
+/* FAQ */
+
+.faq-section {
+  background: white;
+  padding: 80px 14%;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 80px;
+}
+
+.faq-item {
+  border-bottom: 1px solid #ccc;
+  padding: 25px 0;
+}
+
+.faq-item h3 {
+  cursor: pointer;
+}
+
+.faq-item p {
+  margin-top: 20px;
+  line-height: 1.7;
+}
+
+/* DELIVERY */
+
+.delivery-banner {
+  height: 260px;
+  background: #52796f;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.delivery-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  padding: 60px 220px;
+}
+
+.callback-form,
+.map-section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.callback-form input,
+.callback-form textarea,
+.map-section input {
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+}
+
+.callback-form textarea {
+  height: 130px;
+  border-radius: 15px;
+}
+
+/* FOOTER */
+
+footer {
+  background: #2f3e46;
+  color: white;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding: 70px 120px;
+}
+
+footer input {
+  padding: 15px;
+  border: none;
+  border-radius: 30px;
+  margin-top: 15px;
+  margin-right: 10px;
 }
