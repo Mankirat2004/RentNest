@@ -106,3 +106,9 @@ body {
 .register-btn {
   background: #84a98c !important;
 }
+.form-message {
+  text-align: center;
+  font-weight: bold;
+  color: #2f3e46;
+  margin-top: 10px;
+}

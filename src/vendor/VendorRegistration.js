@@ -1,26 +1,53 @@
 import React, { useState } from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
+import VendorService from "../services/vendorService";
 import "./VendorRegistration.css";
 
 function VendorRegistration() {
-  const [formData, setFormData] = useState({
-    businessName: "",
-    email: "",
-    phone: "",
-    password: "",
-    confirmPassword: "",
-  });
+  const [businessName, setBusinessName] = useState("");
+  const [ownerName, setOwnerName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
-  function handleChange(e) {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  }
-
-  function handleRegister(e) {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    console.log(formData);
-  }
+    setMessage("");
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      const vendorId = userCredential.user.uid;
+
+      const vendorData = {
+        vendorId: vendorId,
+        businessName: businessName,
+        ownerName: ownerName,
+        email: email,
+        phone: phone,
+        role: "vendor",
+        createdAt: new Date().toISOString(),
+      };
+
+      await VendorService.createVendor(vendorId, vendorData);
+
+      setMessage("Vendor registered successfully");
+
+      setBusinessName("");
+      setOwnerName("");
+      setEmail("");
+      setPhone("");
+      setPassword("");
+    } catch (error) {
+      setMessage(error.message);
+    }
+  };
 
   return (
     <div className="registration-page">
@@ -38,43 +65,45 @@ function VendorRegistration() {
         <form className="registration-form" onSubmit={handleRegister}>
           <input
             type="text"
-            name="businessName"
             placeholder="Business Name:"
-            value={formData.businessName}
-            onChange={handleChange}
-          />
-
-          <input
-            type="email"
-            name="email"
-            placeholder="Email:"
-            value={formData.email}
-            onChange={handleChange}
+            value={businessName}
+            onChange={(e) => setBusinessName(e.target.value)}
+            required
           />
 
           <input
             type="text"
-            name="phone"
+            placeholder="Owner Name:"
+            value={ownerName}
+            onChange={(e) => setOwnerName(e.target.value)}
+            required
+          />
+
+          <input
+            type="email"
+            placeholder="Email:"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+
+          <input
+            type="text"
             placeholder="Phone Number:"
-            value={formData.phone}
-            onChange={handleChange}
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            required
           />
 
           <input
             type="password"
-            name="password"
             placeholder="Password:"
-            value={formData.password}
-            onChange={handleChange}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
           />
 
-          <input
-            type="password"
-            name="confirmPassword"
-            placeholder="Confirm Password:"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-          />
+          {message && <p className="form-message">{message}</p>}
 
           <div className="registration-action-buttons">
             <button type="button" className="login-btn">

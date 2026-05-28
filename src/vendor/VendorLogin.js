@@ -1,13 +1,25 @@
 import React, { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
 import "./VendorLogin.css";
 
 function VendorLogin() {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
   function handleLogin(e) {
     e.preventDefault();
-    console.log(username, password);
+    setMessage("");
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log("Logged in:", userCredential.user.uid);
+        setMessage("Login successful");
+      })
+      .catch((error) => {
+        setMessage(error.message);
+      });
   }
 
   return (
@@ -25,10 +37,11 @@ function VendorLogin() {
 
         <form className="login-form" onSubmit={handleLogin}>
           <input
-            type="text"
-            placeholder="Username:"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            type="email"
+            placeholder="Email:"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
           />
 
           <input
@@ -36,7 +49,10 @@ function VendorLogin() {
             placeholder="Password:"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
+
+          {message && <p className="form-message">{message}</p>}
 
           <div className="action-buttons">
             <button type="submit" className="login-btn">
