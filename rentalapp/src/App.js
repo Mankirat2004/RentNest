@@ -45,7 +45,9 @@ function App() {
         <Payment cartItems={cartItems} setPage={setPage} />
       )}
 
-      <Footer />
+      {page === "login" && <LoginPlaceholder setPage={setPage} />}
+
+      <Footer setPage={setPage} />
     </div>
   );
 }
@@ -59,19 +61,42 @@ function Header({ setPage, cartItems }) {
   return (
     <header className="header">
       <div className="logo" onClick={() => setPage("home")}>
-        RentNest
+        <img
+          src="/rentnest-logo.png"
+          alt="RentNest Logo"
+          className="logo-img"
+        />
+        <span>RentNest</span>
       </div>
 
       <nav>
         <a onClick={() => setPage("home")}>HOME</a>
         <a onClick={() => setPage("products")}>OUR PRODUCTS</a>
         <a onClick={() => setPage("delivery")}>DELIVERY AREAS</a>
-        <a onClick={() => setPage("contact")}>CONTACT US</a>
+        <a onClick={() => setPage("contact")}>ABOUT US</a>
         <a onClick={() => setPage("cart")}>CART ({cartCount})</a>
+
+        <button className="login-btn" onClick={() => setPage("login")}>
+          LOGIN / REGISTER
+        </button>
       </nav>
 
       <div className="phone">📞 0800 111 313</div>
     </header>
+  );
+}
+
+function LoginPlaceholder({ setPage }) {
+  return (
+    <section className="login-placeholder">
+      <h1>Login / Register Page</h1>
+
+      <p>
+        Firebase Authentication page will be connected here after project merge.
+      </p>
+
+      <button onClick={() => setPage("home")}>BACK TO HOME</button>
+    </section>
   );
 }
 
@@ -93,10 +118,7 @@ function Home({ setPage }) {
 
           <button
             onClick={() => setPage("cart")}
-            style={{
-              marginLeft: "15px",
-              background: "#52796f",
-            }}
+            style={{ marginLeft: "15px", background: "#52796f" }}
           >
             VIEW CART
           </button>
@@ -105,15 +127,12 @@ function Home({ setPage }) {
         <div className="hero-text">
           <p>
             Whether it's appliance rentals, furniture rentals, or any product
-            you are wanting to rent — RentNest has you covered. With same day
-            approval on most applications, and next day delivery to most
-            locations, we make it super quick and easy.
+            you are wanting to rent — RentNest has you covered.
           </p>
 
           <p>
             The RentNest range of products has the solution to suit your budget
-            and lifestyle, from large families to one person households and
-            everything in between!!
+            and lifestyle.
           </p>
         </div>
       </section>
@@ -123,7 +142,7 @@ function Home({ setPage }) {
 
         <p>
           We offer you a full service of rental packages to ensure you have
-          everything you need
+          everything you need.
         </p>
 
         <div className="home-category-grid">
@@ -174,7 +193,7 @@ function Home({ setPage }) {
 
         <p>
           Discover how our rental solutions can meet your short and long term
-          needs
+          needs.
         </p>
 
         <div className="solution-grid">
@@ -241,7 +260,6 @@ function DeliveryAreas() {
           </div>
 
           <input placeholder="Post Code or Suburb" />
-
           <textarea placeholder="Message"></textarea>
 
           <button>SUBMIT NOW</button>
@@ -250,7 +268,6 @@ function DeliveryAreas() {
         <div className="map-section">
           <div className="map-title-row">
             <h2>📍 Find Your Delivery Region</h2>
-
             <input placeholder="Post Code or Suburb" />
           </div>
 
@@ -267,16 +284,14 @@ function DeliveryAreas() {
   );
 }
 
-function Footer() {
+function Footer({ setPage }) {
   return (
     <footer>
       <div>
         <h2>Want to know more about our rentals?</h2>
-
         <h2>Join our mailing list!</h2>
 
         <input placeholder="First Name" />
-
         <input placeholder="Email Address" />
 
         <button>SUBSCRIBE</button>
@@ -285,18 +300,29 @@ function Footer() {
       <div>
         <h3>Pages</h3>
 
-        <p>Home</p>
+        <p className="footer-link" onClick={() => setPage("home")}>
+          Home
+        </p>
 
-        <p>Our Products</p>
+        <p className="footer-link" onClick={() => setPage("products")}>
+          Our Products
+        </p>
 
-        <p>Delivery Areas</p>
+        <p className="footer-link" onClick={() => setPage("delivery")}>
+          Delivery Areas
+        </p>
 
-        <p>Contact Us</p>
+        <p className="footer-link" onClick={() => setPage("contact")}>
+          About Us
+        </p>
+
+        <p className="footer-link" onClick={() => setPage("login")}>
+          Login / Register
+        </p>
       </div>
 
       <div>
         <h3>Get In Touch</h3>
-
         <p>📞 0800 111 313</p>
       </div>
     </footer>
