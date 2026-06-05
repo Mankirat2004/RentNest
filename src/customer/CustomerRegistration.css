@@ -1,10 +1,4 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.login-page {
+.customer-registration-page {
   min-height: 100vh;
   background: #354f52;
   font-family: Arial, sans-serif;
@@ -13,76 +7,36 @@
   align-items: center;
 }
 
-.login-wrapper {
+.customer-registration-wrapper {
   width: 540px;
   background: #3b5a5c;
-  padding: 70px 0 90px;
+  padding: 60px 0 80px;
   text-align: center;
 }
 
-.top-header {
-  margin-bottom: 45px;
-}
-
-.logo-placeholder {
-  display: none;
-}
-
-.top-header h1 {
+.customer-registration-header h1 {
   color: white;
   font-size: 52px;
   font-weight: bold;
-  margin-bottom: 35px;
+  margin-bottom: 45px;
 }
 
-.login-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.role-buttons {
+.customer-registration-body {
   display: flex;
   justify-content: center;
-  gap: 40px;
-  margin-bottom: 60px;
 }
 
-.role-buttons button {
-  width: 190px;
-  height: 58px;
-  border: none;
-  border-radius: 30px;
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.buyer-btn {
-  background: #84a98c;
-}
-
-.seller-btn {
-  background: #52796f;
-}
-
-.active-role {
-  background: #52796f !important;
-  transform: scale(1.04);
-}
-
-.login-form {
+.customer-registration-form {
   width: 540px;
   background: white;
   border-radius: 18px;
-  padding: 55px 58px;
+  padding: 50px 58px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.login-form input {
+.customer-registration-form input {
   width: 425px;
   height: 60px;
   border: 1px solid #c8c8c8;
@@ -90,22 +44,22 @@
   background: #eaf1ff;
   padding: 0 22px;
   font-size: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   outline: none;
 }
 
-.login-form input:focus {
+.customer-registration-form input:focus {
   border-color: #84a98c;
 }
 
-.action-buttons {
+.customer-registration-buttons {
   display: flex;
   justify-content: center;
   gap: 25px;
-  margin-top: 30px;
+  margin-top: 25px;
 }
 
-.action-buttons button {
+.customer-registration-buttons button {
   width: 145px;
   height: 58px;
   border: none;
@@ -116,11 +70,11 @@
   cursor: pointer;
 }
 
-.login-btn {
+.customer-login-btn {
   background: #52796f;
 }
 
-.register-btn {
+.customer-register-btn {
   background: #84a98c;
 }
 
@@ -131,7 +85,6 @@
   padding: 12px;
   border-radius: 25px;
   font-size: 14px;
-  margin-top: 5px;
 }
 
 .form-message.success {

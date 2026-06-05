@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { auth } from "../firebase/config";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import VendorService from "../services/vendorService";
-import "./VendorRegistration.css";
+import CustomerService from "../services/customerServices";
+import "./CustomerRegistration.css";
 
-function VendorRegistration() {
+function CustomerRegistration() {
   const navigate = useNavigate();
 
   const [firstName, setFirstName] = useState("");
@@ -17,8 +17,25 @@ function VendorRegistration() {
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState("");
 
-  const handleRegister = async (e) => {
+  function getRegisterErrorMessage(errorCode) {
+    if (errorCode === "auth/email-already-in-use") {
+      return "This email is already registered. Please login instead.";
+    }
+
+    if (errorCode === "auth/invalid-email") {
+      return "Please enter a valid email address.";
+    }
+
+    if (errorCode === "auth/weak-password") {
+      return "Password should be at least 6 characters.";
+    }
+
+    return "Registration failed. Please try again.";
+  }
+
+  async function handleRegister(e) {
     e.preventDefault();
+
     setMessage("");
     setMessageType("");
 
@@ -31,53 +48,48 @@ function VendorRegistration() {
 
       const uid = userCredential.user.uid;
 
-      const vendorData = {
+      const customerData = {
         uid,
         firstName,
         lastName,
         email,
         phone,
-        role: "vendor",
-        approvalStatus: "pending",
-        verifyNotice: "Vendor account is waiting for admin verification.",
+        role: "customer",
         createdAt: new Date().toISOString(),
       };
 
-      await VendorService.createVendor(uid, vendorData);
+      await CustomerService.createCustomer(uid, customerData);
 
-      setMessage(
-        "Vendor registered successfully. Your account is waiting for admin verification."
-      );
+      setMessage("Customer registered successfully. You can now login.");
       setMessageType("success");
 
-      setTimeout(() => {
-        navigate("/vendor-login");
-      }, 2000);
-    } catch (error) {
-      if (error.code === "auth/email-already-in-use") {
-        setMessage("This email already exists. Please login instead.");
-      } else if (error.code === "auth/weak-password") {
-        setMessage("Password must be at least 6 characters.");
-      } else {
-        setMessage("Registration failed. Please try again.");
-      }
+      setFirstName("");
+      setLastName("");
+      setEmail("");
+      setPhone("");
+      setPassword("");
 
+      setTimeout(() => {
+        navigate("/customer-login");
+      }, 1200);
+    } catch (error) {
+      setMessage(getRegisterErrorMessage(error.code));
       setMessageType("error");
     }
-  };
+  }
 
   return (
-    <div className="registration-page">
-      <div className="registration-wrapper">
-        <header className="registration-header">
+    <div className="customer-registration-page">
+      <div className="customer-registration-wrapper">
+        <header className="customer-registration-header">
           <h1>RentNest</h1>
         </header>
 
-        <main className="registration-body">
-          <form className="registration-form" onSubmit={handleRegister}>
+        <main className="customer-registration-body">
+          <form className="customer-registration-form" onSubmit={handleRegister}>
             <input
               type="text"
-              placeholder="First Name:"
+              placeholder="First Name"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
               required
@@ -85,7 +97,7 @@ function VendorRegistration() {
 
             <input
               type="text"
-              placeholder="Last Name:"
+              placeholder="Last Name"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
               required
@@ -93,7 +105,7 @@ function VendorRegistration() {
 
             <input
               type="email"
-              placeholder="Email:"
+              placeholder="Email Address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -101,7 +113,7 @@ function VendorRegistration() {
 
             <input
               type="text"
-              placeholder="Phone Number:"
+              placeholder="Phone Number"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               required
@@ -109,24 +121,26 @@ function VendorRegistration() {
 
             <input
               type="password"
-              placeholder="Password:"
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
 
-            {message && <p className={`form-message ${messageType}`}>{message}</p>}
+            {message && (
+              <p className={`form-message ${messageType}`}>{message}</p>
+            )}
 
-            <div className="registration-action-buttons">
+            <div className="customer-registration-buttons">
               <button
                 type="button"
-                className="login-btn"
-                onClick={() => navigate("/vendor-login")}
+                className="customer-login-btn"
+                onClick={() => navigate("/customer-login")}
               >
                 Login
               </button>
 
-              <button type="submit" className="register-btn">
+              <button type="submit" className="customer-register-btn">
                 Register
               </button>
             </div>
@@ -137,4 +151,4 @@ function VendorRegistration() {
   );
 }
 
-export default VendorRegistration;
+export default CustomerRegistration;

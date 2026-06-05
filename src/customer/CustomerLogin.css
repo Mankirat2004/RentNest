@@ -1,0 +1,78 @@
+.customer-login-page {
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background: #354f52;
+}
+
+.customer-login-header {
+  background: #2f3e46;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.customer-login-header h1 {
+  font-size: 42px;
+  font-weight: bold;
+}
+
+.customer-login-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 90px 0;
+}
+
+.customer-login-form {
+  background: white;
+  width: 480px;
+  padding: 45px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.customer-login-form input {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  font-size: 18px;
+}
+
+.customer-action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-top: 25px;
+}
+
+.customer-action-buttons button {
+  background: #84a98c;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 15px 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.form-message {
+  text-align: center;
+  font-weight: bold;
+  padding: 12px;
+  border-radius: 25px;
+}
+
+.form-message.success {
+  background: #d8f3dc;
+  color: #2d6a4f;
+}
+
+.form-message.error {
+  background: #ffe5e5;
+  color: #b00020;
+}
