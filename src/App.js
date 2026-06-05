@@ -1,13 +1,19 @@
-import VendorDashboard from "./vendor/VendorDashboard";
-import VendorLogin from "./vendor/VendorLogin";
-import VendorRegistration from "./vendor/VendorRegistration";
+import React from "react";
+import { AuthProvider, useAuth } from "./context/AuthContext";
+import LoginPage from "./pages/LoginPage";
+import AdminLayout from "./components/AdminLayout";
+import "./index.css";
 
-function App() {
-  return (
-    <div>
-      <VendorLogin/>
-    </div>
-  );
+function AppContent() {
+  const { currentUser, userRole } = useAuth();
+  if (!currentUser || userRole !== "admin") return <LoginPage />;
+  return <AdminLayout />;
 }
 
-export default App;
+export default function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
+  );
+}
